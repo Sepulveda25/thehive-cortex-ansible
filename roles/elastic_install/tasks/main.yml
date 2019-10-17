@@ -1,9 +1,12 @@
 ---
 
-- name: Instala la clave de Elastic
+
+- name: Add an apt key by id from a keyserver
   become: yes
   become_user: root
-  apt-key: keyserver=keyserver.ubuntu.com id=D88E42B4
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
 
 - name: Configuracion del repositorio de Elastic
   become: yes
@@ -22,18 +25,13 @@
   become_user: root
   apt:
    name: elasticsearch
+   update_cache: yes
 
-- name: Moverse a la carpeta /etc/elasticsearch para editar el archivo elasticsearch.yml
+- name: Agregar lineas en el archivo /etc/elasticsearch/elasticsearch.yml
   become: yes
   become_user: root
-  command: chdir=/etc/elasticsearch
-
-- name: Moverse a la carpeta /etc/elasticsearch para editar el archivo elasticsearch.yml
-  become: yes
-  become_user: root
-  blockinfile:- name: Insert multiple lines and Backup
   blockinfile:
-    path: /etc/ssh/sshd_config
+    path: /etc/elasticsearch/elasticsearch.yml
     backup: yes
     block: |
       network.host: 127.0.0.1
