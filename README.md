@@ -10,7 +10,7 @@
 
 
 
-
+ansible-playbook -i hosts -l thehive setup.yml --extra-var "target=thehiveuser" --ask-become-pass
 
 
 

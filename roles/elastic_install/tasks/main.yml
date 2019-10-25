@@ -1,6 +1,5 @@
 ---
 
-
 - name: Add an apt key by id from a keyserver
   become: yes
   become_user: root
@@ -11,7 +10,10 @@
 - name: Configuracion del repositorio de Elastic
   become: yes
   become_user: root
-  command: echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-5.x.list
+  lineinfile:
+    path: /etc/apt/sources.list.d/elastic-5.x.list
+    line: deb https://artifacts.elastic.co/packages/5.x/apt stable main
+    create: yes
 
 - name: Instalar soporte para apt con https
   become: yes
@@ -41,17 +43,21 @@
       thread_pool.search.queue_size: 100000
       thread_pool.bulk.queue_size: 100000
 
+- name: Add ppa:linuxuprising/java stable repository from PPA and install its signing key.
+  apt_repository:
+    repo: ppa:linuxuprising/java
+
+
 - name: Reinicia los daemon para ejecutar el servicio de elasticsearch
   become: true
   systemd:
    state: restarted
    daemon_reload: yes
 
-- name: Habilita e inicia el servicio de elasticsearch
-  become: true
+- name: Habilita e inicializa el servicio de Elastic
+  become: yes
+  become_user: root
   systemd:
-    name: elasticsearch
-    enable: yes
-    state: start
-
-
+    name: elasticsearch.service
+    state: started
+    enabled: yes
