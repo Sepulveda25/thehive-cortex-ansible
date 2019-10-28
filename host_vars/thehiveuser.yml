@@ -1,4 +1,6 @@
 ansible_host: '172.16.81.70'
-ansible_user: 'debian'
+ansible_user: 'thehive'
+
+api_admin_the_hive: X0YDSBCTOPtT1jYGoAG8deupsBJPFeJo
 
 

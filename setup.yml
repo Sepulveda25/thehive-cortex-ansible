@@ -10,6 +10,8 @@
   gather_facts: yes
 
   roles:
-    - elastic_install
+#    - java_install
+#    - elastic_install
+#    - thehive_install
+    - cortex_install
 
-  

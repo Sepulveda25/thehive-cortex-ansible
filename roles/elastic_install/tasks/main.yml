@@ -43,15 +43,10 @@
       thread_pool.search.queue_size: 100000
       thread_pool.bulk.queue_size: 100000
 
-- name: Add ppa:linuxuprising/java stable repository from PPA and install its signing key.
-  apt_repository:
-    repo: ppa:linuxuprising/java
-
 
 - name: Reinicia los daemon para ejecutar el servicio de elasticsearch
   become: true
   systemd:
-   state: restarted
    daemon_reload: yes
 
 - name: Habilita e inicializa el servicio de Elastic
@@ -61,3 +56,9 @@
     name: elasticsearch.service
     state: started
     enabled: yes
+
+- name: Make sure a service elasticsearch.service is running
+  systemd:
+    state: started
+    name: elasticsearch.service
+
