@@ -1,0 +1,64 @@
+---
+
+- name: Add an apt key by id from a keyserver
+  become: yes
+  become_user: root
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: Configuracion del repositorio de Elastic
+  become: yes
+  become_user: root
+  lineinfile:
+    path: /etc/apt/sources.list.d/elastic-5.x.list
+    line: deb https://artifacts.elastic.co/packages/5.x/apt stable main
+    create: yes
+
+- name: Instalar soporte para apt con https
+  become: yes
+  become_user: root
+  apt:
+   name: apt-transport-https
+   update_cache: yes
+
+- name: Instalación de Elasticsearch
+  become: yes
+  become_user: root
+  apt:
+   name: elasticsearch
+   update_cache: yes
+
+- name: Agregar lineas en el archivo /etc/elasticsearch/elasticsearch.yml
+  become: yes
+  become_user: root
+  blockinfile:
+    path: /etc/elasticsearch/elasticsearch.yml
+    backup: yes
+    block: |
+      network.host: 127.0.0.1
+      script.inline: true
+      cluster.name: hive
+      thread_pool.index.queue_size: 100000
+      thread_pool.search.queue_size: 100000
+      thread_pool.bulk.queue_size: 100000
+
+
+- name: Reinicia los daemon para ejecutar el servicio de elasticsearch
+  become: true
+  systemd:
+   daemon_reload: yes
+
+- name: Habilita e inicializa el servicio de Elastic
+  become: yes
+  become_user: root
+  systemd:
+    name: elasticsearch.service
+    state: started
+    enabled: yes
+
+- name: Make sure a service elasticsearch.service is running
+  systemd:
+    state: started
+    name: elasticsearch.service
+

@@ -1,0 +1,15 @@
+---
+
+- name: Instalar java default-jre 
+  become: yes
+  become_user: root
+  apt:
+   name: default-jre 
+   update_cache: yes
+
+- name: Instalar java openjdk-11-jre-headless
+  become: yes
+  become_user: root
+  apt:
+   name: openjdk-11-jre-headless
+

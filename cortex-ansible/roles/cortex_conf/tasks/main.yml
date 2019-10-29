@@ -1,0 +1,14 @@
+---
+
+- name: Cambiar path analyzer en /etc/cortex/application.conf
+  become: yes
+  become_user: root
+  replace:
+    path: /etc/cortex/application.conf
+    after: 'analyzer {'
+    regexp: '(^|\s)path =($|\s).*' #matchea si empieza con un espacio en blanco y path..
+    replace: |
+             path =  [
+                "{{path_default_analyzers }}",
+                "{{path_my_own_analyzers }}"
+             ]

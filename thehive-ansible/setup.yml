@@ -1,0 +1,13 @@
+
+---
+
+- name: Install The Hive and Cortex
+  hosts: all
+#  become: yes
+  gather_facts: yes
+
+  roles:
+    - java_install
+    - elastic_install
+    - thehive_install
+
