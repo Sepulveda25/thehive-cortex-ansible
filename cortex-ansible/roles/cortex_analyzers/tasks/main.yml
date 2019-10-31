@@ -1,0 +1,34 @@
+---
+
+- name: Instala el conjunto de dependencias necesarias para los Analyzers y Responders
+  become: yes
+  became_user: root
+  apt: name={{item}} state=installed
+  with_items:
+    - python-pip
+    - python2.7-dev
+    - python3-pip
+    - python3-dev
+    - ssdeep
+    - libfuzzy-dev
+    - libfuzzy2
+    - libimage-exiftool-perl
+    - libmagic1
+    - build-essential
+    - git
+    - libssl-dev
+
+- name: Instala setuptools con pip
+- pip:
+    name: setuptools
+
+- name: Instala setuptools con pip3
+- pip:
+    name: setuptools
+    executable: pip-3.3
+
+
+- name: Clona el repositorio de analizadores de Cortex en el directorio /opt
+- git:
+    repo: https://github.com/TheHive-Project/Cortex-Analyzers
+    dest: /opt/
