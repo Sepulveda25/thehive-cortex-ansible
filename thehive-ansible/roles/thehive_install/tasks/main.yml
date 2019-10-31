@@ -66,9 +66,24 @@
     state: started
     name: thehive.service
 
+- name: Instalar python-pip
+  become: yes
+  become_user: root
+  apt:
+   name: python-pip
+   update_cache: yes
+
+- name: Instalar python3-pip
+  become: yes
+  become_user: root
+  apt:
+   name: python3-pip
+   update_cache: yes
+
 - name: Install thehive4py 
   pip:
     name: thehive4py
+
 
 #depues de esto entrar a localhost:9000 y actualizar base de datos
 #crear usuario administrador
