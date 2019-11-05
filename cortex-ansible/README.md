@@ -4,7 +4,7 @@
 
 1. [Pre-requisitos](#pre-requisitos)
 2. [Instrucciones para el despliegue de Cortex](#instrucciones-para-el-despliegue-de-cortex)
-4. [Referencias](#referencias)
+
 
 
 ## Pre-requisitos
