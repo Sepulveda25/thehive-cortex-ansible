@@ -3,7 +3,7 @@
 ## Tabla de contenidos
 
 1. [Pre-requisitos](#pre-requisitos)
-2. [Instrucciones](#Instrucciones)
+2. [Instrucciones](#instrucciones)
 3. [Post-despligue](#post-despligue)
 
 
