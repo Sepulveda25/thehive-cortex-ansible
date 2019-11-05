@@ -49,7 +49,7 @@
 2.  Activar opcion `"Actualizar base de datos"`.
 3.  Crear usuario `ADMIN`.
 4.  Crear `API-KEY` en `Users` (Barra superior derecha en la lista deplegable "ADMIN").
-5.  Activar la opcion `"Reveal"` sobre la `API-KEY`, la misma sera usada para el despliegue de Cortex.
+5.  Activar la opcion `Reveal` sobre la `API-KEY`, la misma sera usada para el despliegue de Cortex.
 
 
 
