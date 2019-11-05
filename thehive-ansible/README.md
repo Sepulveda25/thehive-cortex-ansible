@@ -45,7 +45,7 @@
 
 ## Post-despligue
 
-1.  Ingresar desde el navegador a: ``ipserverthehive:9000`
+1.  Ingresar desde el navegador a: `ipserverthehive:9000`
 2.  Activar opcion `"Actualizar base de datos"`.
 3.  Crear usuario `ADMIN`.
 4.  Crear `API-KEY` en `Users` (Barra superior derecha en la lista deplegable "ADMIN").
