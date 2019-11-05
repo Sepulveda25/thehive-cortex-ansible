@@ -3,7 +3,7 @@
 ## Tabla de contenidos
 
 1. [Pre-requisitos](#pre-requisitos)
-2. [Instrucciones para el despliegue de TheHive](#instrucciones-para-el-despliegue-de-TheHive)
+2. [Instrucciones para el despliegue de TheHive](#Instrucciones-para-el-despliegue-de-TheHive)
 3. [Post-despligue](#post-despligue)
 
 
