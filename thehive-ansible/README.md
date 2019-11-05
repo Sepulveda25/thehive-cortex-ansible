@@ -3,7 +3,7 @@
 ## Tabla de contenidos
 
 1. [Pre-requisitos](#pre-requisitos)
-2. [Instrucciones para el despliegue de TheHive](#Instrucciones-para-el-despliegue-de-TheHive)
+2. [Instrucciones](#Instrucciones)
 3. [Post-despligue](#post-despligue)
 
 
@@ -16,7 +16,7 @@
 3. Contar con un servidor con InfluxDB y Grafana. El servidor desplegado con Ansible sera integrado con Grafana. 
    Comprobar configuracion de archivo: `roles/telegraf_install/files/telegraf.conf` (AGREGAR!!!!!)
 
-## Instrucciones para el despliegue de TheHive
+## Instrucciones
 
 
 *  Agregar nombre de usuario del servidor `host` en el grupo `thehive` (Ej. user thehiveuser):
