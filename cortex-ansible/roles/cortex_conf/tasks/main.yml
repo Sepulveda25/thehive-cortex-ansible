@@ -12,3 +12,33 @@
                 "{{path_default_analyzers }}",
                 "{{path_my_own_analyzers }}"
              ]
+
+- name: fork-join executor Analyzer
+  lineinfile:
+    path: /etc/cortex/application.conf
+    line: parallelism-min = 2       # Min number of threads available for analyze
+    line: parallelism-factor = 2.0  # Parallelism (threads) ... ceil(available processors * factor)
+    line: parallelism-max = 4       # Max number of threads available for analyze
+
+
+
+- name: Cambiar path responder en /etc/cortex/application.conf
+  become: yes
+  become_user: root
+  replace:
+    path: /etc/cortex/application.conf
+    after: 'responder {'
+    regexp: '(^|\s)path =($|\s).*' #matchea si empieza con un espacio en blanco y path..
+    replace: |
+             path =  [
+                "{{path_default_responder }}",
+                "{{path_my_own_responder }}"
+             ]
+
+
+- name: fork-join executor Responder
+  lineinfile:
+    path: /etc/cortex/application.conf
+    line: parallelism-min = 2       # Min number of threads available for analyze
+    line: parallelism-factor = 2.0  # Parallelism (threads) ... ceil(available processors * factor)
+    line: parallelism-max = 4       # Max number of threads available for analyze
