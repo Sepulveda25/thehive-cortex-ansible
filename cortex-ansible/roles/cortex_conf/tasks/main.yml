@@ -20,7 +20,7 @@
   become_user: root
   replace:
     path: /etc/cortex/application.conf
-    before: 'responder {'
+    before: 'parallelism-max =4'
     after: 'analyzer {'
     regexp: '(^|\s)fork-join-executor {'    
     replace: |    
@@ -32,38 +32,39 @@
       
 
 
+ 
 
-
-- name: Cambiar path responder en /etc/cortex/application.conf
+- name: Agregar la configuracion del responder en /etc/cortex/application.conf
   become: yes
   become_user: root
-  replace:
+  blockinfile:
     path: /etc/cortex/application.conf
-    after: 'responder {'
-    regexp: '(^|\s)path =($|\s).*' #matchea si empieza con un espacio en blanco y path..
-    replace: |
-             path =  [
+    block: |
+     ## RESPONDERS
+     #
+     responder {
+     # Absolute path where you have pulled the Cortex-Analyzers repository.
+     path =  [
                 "{{path_default_responder }}",
                 "{{path_my_own_responder }}"
              ]
+     # Sane defaults. Do not change unless you know what you are doing.
+     fork-join-executor {
+     # Min number of threads available for analysis.
+     parallelism-min = 2
+     # Parallelism (threads) ... ceil(available processors * factor).
+     parallelism-factor = 2.0
+     # Max number of threads available for analysis.
+     parallelism-max = 4
+     }
+     }
 
 
 
 
-- name: fork-join executor Responder
-  become: yes
-  become_user: root
-  replace:
-    path: /etc/cortex/application.conf
-    before: 'parallelism-max =4'
-    after: 'responder {'
-    regexp: '(^|\s)fork-join-executor {'    
-    replace: |    
-             fork-join executor {
-             parallelism-min = 2       # Min number of threads available for analyze
-             parallelism-factor = 2.0  # Parallelism (threads) ... ceil(available processors * factor)
-             parallelism-max = 4       # Max number of threads available for analyze
-             }
+          
+
+
 
 
 
