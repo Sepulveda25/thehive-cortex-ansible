@@ -39,25 +39,24 @@
   blockinfile:
     path: /etc/cortex/application.conf
     block: |
-      ## RESPONDERS
-      #
-      responder {
-      # Absolute path where you have pulled the Cortex-Analyzers repository.
-      path =  [
+           ## RESPONDERS
+           #
+           responder {
+           # Absolute path where you have pulled the Cortex-Analyzers repository.
+           path =  [
                 "{{path_default_responder }}",
                 "{{path_my_own_responder }}"
              ]
-      # Sane defaults. Do not change unless you know what you are doing.
-      fork-join-executor {
-      # Min number of threads available for analysis.
-      parallelism-min = 2
-      # Parallelism (threads) ... ceil(available processors * factor).
-      parallelism-factor = 2.0
-      # Max number of threads available for analysis.
-      parallelism-max = 4
-      }
-      }
-
+           # Sane defaults. Do not change unless you know what you are doing.
+           fork-join-executor {
+           # Min number of threads available for analysis.
+           parallelism-min = 2
+           # Parallelism (threads) ... ceil(available processors * factor).
+           parallelism-factor = 2.0
+           # Max number of threads available for analysis.
+           parallelism-max = 4
+           }
+           }
 
 
 
