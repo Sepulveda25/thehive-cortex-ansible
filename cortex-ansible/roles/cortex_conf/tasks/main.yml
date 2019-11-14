@@ -24,7 +24,7 @@
     regexp: '(^|\s)fork-join-executor {'    
     replace: | 
              fork-join executor {     
-	     parallelism-min = 2       # Min number of threads available for analyze
+             parallelism-min = 2       # Min number of threads available for analyze
              parallelism-factor = 2.0  # Parallelism (threads) ... ceil(available processors * factor)
              parallelism-max = 4       # Max number of threads available for analyze
              }
