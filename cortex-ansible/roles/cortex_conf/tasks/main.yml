@@ -12,13 +12,25 @@
                 "{{path_default_analyzers }}",
                 "{{path_my_own_analyzers }}"
              ]
+	    
 
+  
 - name: fork-join executor Analyzer
-  lineinfile:
+  become: yes
+  become_user: root
+  replace:
     path: /etc/cortex/application.conf
-    line: parallelism-min = 2       # Min number of threads available for analyze
-    line: parallelism-factor = 2.0  # Parallelism (threads) ... ceil(available processors * factor)
-    line: parallelism-max = 4       # Max number of threads available for analyze
+    before: 'responder {'
+    after: 'analyzer {'
+    regexp: '(^|\s)fork-join-executor {'    
+    replace: |    
+	     fork-join executor {     
+	     parallelism-min = 2       # Min number of threads available for analyze
+             parallelism-factor = 2.0  # Parallelism (threads) ... ceil(available processors * factor)
+             parallelism-max = 4       # Max number of threads available for analyze
+             }
+      
+
 
 
 
@@ -36,9 +48,22 @@
              ]
 
 
+
+
 - name: fork-join executor Responder
-  lineinfile:
+  become: yes
+  become_user: root
+  replace:
     path: /etc/cortex/application.conf
-    line: parallelism-min = 2       # Min number of threads available for analyze
-    line: parallelism-factor = 2.0  # Parallelism (threads) ... ceil(available processors * factor)
-    line: parallelism-max = 4       # Max number of threads available for analyze
+    before: 'parallelism-max =4'
+    after: 'responder {'
+    regexp: '(^|\s)fork-join-executor {'    
+    replace: |    
+             fork-join executor {
+             parallelism-min = 2       # Min number of threads available for analyze
+             parallelism-factor = 2.0  # Parallelism (threads) ... ceil(available processors * factor)
+             parallelism-max = 4       # Max number of threads available for analyze
+             }
+
+
+
