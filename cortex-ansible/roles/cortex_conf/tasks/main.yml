@@ -11,8 +11,7 @@
              path =  [
                 "{{path_default_analyzers }}",
                 "{{path_my_own_analyzers }}"
-             ]
-	    
+             ]	    
 
   
 - name: fork-join executor Analyzer
