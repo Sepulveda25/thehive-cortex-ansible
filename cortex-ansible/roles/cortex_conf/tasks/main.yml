@@ -6,31 +6,13 @@
   replace:
     path: /etc/cortex/application.conf
     after: 'analyzer {'
-    regexp: '(^|\s)path =(\s+)[.*]' #matchea si empieza con un espacio en blanco y path..
+    regexp: '(^|\s)path =(\s+).*' #matchea si empieza con un espacio en blanco y path..
     replace: |
-
-             path =  [
-                "{{path_default_analyzers }}",
-                "{{path_my_own_analyzers }}"
-             ]
-
-
-- name: fork-join executor Analyzer
-  become: yes
-  become_user: root
-  replace:
-    path: /etc/cortex/application.conf
-    before: 'parallelism-max =4'
-    after: 'analyzer {'
-    regexp: '(^|\s)fork-join-executor {'
-    replace: |
-             fork-join executor {
-             parallelism-min = 2       # Min number of threads available for analyze
-             parallelism-factor = 2.0  # Parallelism (threads) ... ceil(available processors * factor)
-             parallelism-max = 4       # Max number of threads available for analyze
-             }
-
-
+              path =  [
+                  "{{path_default_analyzers }}",
+                  "{{path_my_own_analyzers }}"
+              ]
+ 
 
 - name: Agregar la configuracion del responder en /etc/cortex/application.conf
   become: yes
@@ -41,35 +23,18 @@
            ## RESPONDERS
            #
            responder {
-           # Absolute path where you have pulled the Cortex-Analyzers repository.
-            path =  [
+            # Absolute path where you have pulled the Cortex-Analyzers repository.
+               path =  [
                       "{{path_default_responders }}",
                       "{{path_my_own_responders }}"
-              ]
-           # Sane defaults. Do not change unless you know what you are doing.
-           fork-join-executor {
-           # Min number of threads available for analysis.
-           parallelism-min = 2
-           # Parallelism (threads) ... ceil(available processors * factor).
-           parallelism-factor = 2.0
-           # Max number of threads available for analysis.
-           parallelism-max = 4
+               ]
+               # Sane defaults. Do not change unless you know what you are doing.
+               fork-join-executor {
+               # Min number of threads available for analysis.
+               parallelism-min = 2
+               # Parallelism (threads) ... ceil(available processors * factor).
+               parallelism-factor = 2.0
+               # Max number of threads available for analysis.
+               parallelism-max = 4
+               }
            }
-           }
-
-
-
-
-- name: Generar la clave del servidor
-  become: yes
-  become_user: root
-  shell: |
-    (cat << _EOF_
-    play.http.secret.key="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 64 | head -n 1)"
-    _EOF_
-    search.host = ['127.0.0.1:9300']
-    analyzer.urls = ["/opt/Cortex-Analyzers/analyzers"]
-    )
-    | tee -a /etc/cortex/application.conf
-  args:
-    executable: /bin/bash
