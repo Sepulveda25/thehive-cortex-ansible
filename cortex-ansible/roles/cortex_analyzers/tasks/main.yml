@@ -30,7 +30,7 @@
   become_user: root
   pip:
     name: setuptools
-    executable: pip-3.3
+    executable: pip3
 
 - name: Clona el repositorio de analizadores de Cortex en el directorio /opt
   become: yes
@@ -38,3 +38,9 @@
   git:
     repo: https://github.com/TheHive-Project/Cortex-Analyzers
     dest: /opt/
+
+#AGREGAR! 
+#for I in $(find Cortex-Analyzers -name 'requirements.txt'); do sudo -H pip2 install -r $I; done && \
+#for I in $(find Cortex-Analyzers -name 'requirements.txt'); do sudo -H pip3 install -r $I || true; done
+
+
