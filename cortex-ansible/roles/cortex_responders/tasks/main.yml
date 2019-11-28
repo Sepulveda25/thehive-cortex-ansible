@@ -1,19 +1,5 @@
 ---
 
-- name: Cambiar path analyzer en /etc/cortex/application.conf
-  become: yes
-  become_user: root
-  replace:
-    path: /etc/cortex/application.conf
-    after: 'analyzer {'
-    regexp: '(^|\s)path =(\s+).*' #matchea si empieza con un espacio en blanco y path..
-    replace: |
-              path =  [
-                  "{{path_default_analyzers }}",
-                  "{{path_my_own_analyzers }}"
-              ]
- 
-
 - name: Agregar la configuracion del responder en /etc/cortex/application.conf
   become: yes
   become_user: root
@@ -31,10 +17,25 @@
                # Sane defaults. Do not change unless you know what you are doing.
                fork-join-executor {
                # Min number of threads available for analysis.
-               parallelism-min = 2
+               parallelism-min = {{parallelism_min_responders}}
                # Parallelism (threads) ... ceil(available processors * factor).
-               parallelism-factor = 2.0
+               parallelism-factor = {{parallelism_factor_responders}}
                # Max number of threads available for analysis.
-               parallelism-max = 4
+               parallelism-max = {{parallelism_max_responders}}
                }
            }
+
+- name: Habilita e inicializa el servicio de Cortex
+  become: yes
+  become_user: root
+  systemd:
+    name: cortex.service
+    state: started
+    enabled: yes
+
+- name: Make sure a service cortex.service is running
+  systemd:
+    state: started
+    name: cortex.service
+
+    #VER SI HAY QUE BAJAR RESPONDERS DEFAULTS

@@ -1,4 +1,4 @@
-ansible_host: '172.16.81.111'
+ansible_host: '172.16.81.70'
 ansible_user: 'thehive'
 
 

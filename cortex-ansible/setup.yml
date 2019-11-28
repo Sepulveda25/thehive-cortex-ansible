@@ -11,6 +11,6 @@
 
   roles:
 #    - cortex_install
-    - cortex_analyzers
-#    - cortex_conf
+#    - cortex_analyzers
+    - cortex_responders
 

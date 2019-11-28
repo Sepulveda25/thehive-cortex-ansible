@@ -32,15 +32,82 @@
     name: setuptools
     executable: pip3
 
-- name: Clona el repositorio de analizadores de Cortex en el directorio /opt
+- name: Clona el repositorio de analizadores de Cortex en el directorio "{{path_default_analyzers }}"
   become: yes
   become_user: root
   git:
     repo: https://github.com/TheHive-Project/Cortex-Analyzers
-    dest: /opt/
+    dest: "{{path_default_analyzers }}"
 
-#AGREGAR! 
+
+- name: Recursively find requirements.txt files in "{{path_default_analyzers }}"
+  become: yes
+  become_user: root
+  find:
+    paths: "{{path_default_analyzers }}"
+    patterns: 'requirements.txt'
+    recurse: yes
+  register: requirements_paths
+
+#- debug:
+#    msg: "{{item.path}}"
+#  with_items: "{{ requirements_paths.files }}"
+
 #for I in $(find Cortex-Analyzers -name 'requirements.txt'); do sudo -H pip2 install -r $I; done && \
 #for I in $(find Cortex-Analyzers -name 'requirements.txt'); do sudo -H pip3 install -r $I || true; done
 
+# Install specified python requirements.
+- name: Install specified python pip requirements for analyzers in "{{path_default_analyzers }}"
+  become: yes
+  become_user: root
+  pip:
+    requirements: "{{item.path}}"
+  with_items: "{{ requirements_paths.files }}"
 
+  # Install specified python requirements.
+- name: Install specified python pip3 requirements for analyzers in "{{path_default_analyzers }}"
+  become: yes
+  become_user: root
+  pip:
+    requirements: "{{item.path}}"
+    executable: pip3
+  with_items: "{{ requirements_paths.files }}"
+
+- name: Cambiar path analyzer en /etc/cortex/application.conf
+  become: yes
+  become_user: root
+  replace:
+    path: /etc/cortex/application.conf
+    after: 'analyzer {'
+    regexp: '(^|\s)path =(\s+).*' #matchea si empieza con un espacio en blanco y path..
+    replace: |
+              path =  [
+                  "{{path_default_analyzers }}",
+                  "{{path_my_own_analyzers }}"
+              ]
+
+- name: Cambiar la variable parallelism-min, parallelism-factor y parallelism-max en /etc/cortex/application.conf
+  become: yes
+  become_user: root
+  replace:
+    path: /etc/cortex/application.conf
+    after: 'analyzer {'
+    regexp: "{{ item.regexp}}" #matchea si empieza con un espacio en blanco y path..
+    replace: "{{ item.replace }}"
+  with_items:
+    - {regexp: '(?<=parallelism-min =\s).*', replace: '{{parallelism_min_analyzers}}'}
+    - {regexp: '(?<=parallelism-factor =\s).*', replace: '{{parallelism_factor_analyzers}}'}
+    - {regexp: '(?<=parallelism-max =\s).*', replace: '{{parallelism_max_analyzers}}'}
+
+- name: Habilita e inicializa el servicio de Cortex
+  become: yes
+  become_user: root
+  systemd:
+    name: cortex.service
+    state: started
+    enabled: yes
+
+- name: Make sure a service cortex.service is running
+  systemd:
+    state: started
+    name: cortex.service
