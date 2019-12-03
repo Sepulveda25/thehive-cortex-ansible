@@ -29,10 +29,8 @@
 *  Agregar nombre de usuario del servidor `host` en el grupo `cortex` (Ej. user thehiveuser):
 
     ```
-    
       [cortex]
       thehiveuser
-
     ```
     
     
