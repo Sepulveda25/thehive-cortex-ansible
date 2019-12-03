@@ -1,5 +1,13 @@
 ---
 
+- name: Copy my_responders to "{{path_my_own_responders}}"
+  become: yes
+  become_user: root
+  copy:
+    src: "{{ role_path }}/files/my_responders/" #folder from files folder in this role
+    dest: "{{path_my_own_responders}}"
+
+    
 - name: Agregar la configuracion del responder en /etc/cortex/application.conf
   become: yes
   become_user: root
@@ -11,7 +19,7 @@
            responder {
             # Absolute path where you have pulled the Cortex-Analyzers repository.
                path =  [
-                      "{{path_default_responders }}",
+                      "{{path_default_analyzers_and_responders }}",
                       "{{path_my_own_responders }}"
                ]
                # Sane defaults. Do not change unless you know what you are doing.
@@ -37,4 +45,3 @@
   systemd:
     state: started
     name: cortex.service
-

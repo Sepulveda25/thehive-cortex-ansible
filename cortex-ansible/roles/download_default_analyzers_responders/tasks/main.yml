@@ -32,19 +32,19 @@
     name: setuptools
     executable: pip3
 
-- name: Clona el repositorio de Analyzers y Responders de Cortex en el directorio "{{path_default_analyzers }}"
+- name: Clona el repositorio de Analyzers y Responders de Cortex en el directorio "{{path_default_analyzers_and_responders }}"
   become: yes
   become_user: root
   git:
     repo: https://github.com/TheHive-Project/Cortex-Analyzers
-    dest: "{{path_default_analyzers }}"
+    dest: "{{path_default_analyzers_and_responders }}"
 
 
-- name: Recursively find requirements.txt files in "{{path_default_analyzers }}"
+- name: Recursively find requirements.txt files in "{{path_default_analyzers_and_responders }}"
   become: yes
   become_user: root
   find:
-    paths: "{{path_default_analyzers }}"
+    paths: "{{path_default_analyzers_and_responders }}"
     patterns: 'requirements.txt'
     recurse: yes
   register: requirements_paths
@@ -57,7 +57,7 @@
 #for I in $(find Cortex-Analyzers -name 'requirements.txt'); do sudo -H pip3 install -r $I || true; done
 
 # Install specified python requirements.
-- name: Install specified python pip requirements for analyzers in "{{path_default_analyzers }}"
+- name: Install specified python pip requirements for analyzers in "{{path_default_analyzers_and_responders }}"
   become: yes
   become_user: root
   pip:
@@ -65,10 +65,12 @@
   with_items: "{{ requirements_paths.files }}"
 
   # Install specified python requirements.
-- name: Install specified python pip3 requirements for analyzers in "{{path_default_analyzers }}"
+- name: Install specified python pip3 requirements for analyzers in "{{path_default_analyzers_and_responders }}"
   become: yes
   become_user: root
   pip:
     requirements: "{{item.path}}"
     executable: pip3
   with_items: "{{ requirements_paths.files }}"
+
+  

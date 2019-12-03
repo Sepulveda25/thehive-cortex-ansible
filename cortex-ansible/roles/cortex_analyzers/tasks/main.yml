@@ -1,15 +1,22 @@
 ---
+- name: Copy my_analyzers to "{{path_my_own_analyzers}}"
+  become: yes
+  become_user: root
+  copy:
+    src: "{{ role_path }}/files/my_analyzers/" #folder from files folder in this role
+    dest: "{{path_my_own_analyzers}}"
+
 
 - name: Cambiar path analyzer en /etc/cortex/application.conf
   become: yes
   become_user: root
-  replace:
+  replace:  
     path: /etc/cortex/application.conf
     after: 'analyzer {'
     regexp: '(^|\s)path =(\s+).*' #matchea si empieza con un espacio en blanco y path..
     replace: |
               path =  [
-                  "{{path_default_analyzers }}",
+                  "{{path_default_analyzers_and_responders }}",
                   "{{path_my_own_analyzers }}"
               ]
 

@@ -10,8 +10,8 @@
   gather_facts: yes
 
   roles:
-#   - cortex_install
+   - cortex_install
 #    - download_default_analyzers_responders
 #    - cortex_analyzers
-    - cortex_responders
+#    - cortex_responders
 
