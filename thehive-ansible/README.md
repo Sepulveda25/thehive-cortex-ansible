@@ -9,12 +9,13 @@
 
 ## Pre-requisitos
 
-1. Contar con un servidor con Ubuntu/Debian.
+1. Contar con un servidor con Ubuntu Server 18.04. Los requisitos del servidor se encuentran en el apartado "Hardware Pre-requisites
+" del siguiente repositorio: 
+   [Repositorio con los requisitos de hardware](https://github.com/TheHive-Project/TheHiveDocs)
 
-2. Agregar clave SSH publica del dispositivo desde el cual se realiza el despliegue de TheHive
+2. Agregar clave SSH publica del dispositivo desde el cual se realiza el despliegue sobre el servidor objetivo y usuario creado en el paso anterior.
+(No agregar claves SSH  sobre el usuario ROOT del servidor donde se realizara el despliegue).
 
-3. Contar con un servidor con InfluxDB y Grafana. El servidor desplegado con Ansible sera integrado con Grafana. 
-   Comprobar configuracion de archivo: `roles/telegraf_install/files/telegraf.conf` (AGREGAR!!!!!)
 
 ## Instrucciones para el despliegue de TheHive
 
@@ -26,16 +27,20 @@
         thehiveuser
     ```
     
-*  En la carpeta `host_vars` agregar un archivo yml (`thehiveuser.yml`) en la que se especifiquen las variables
-   del archivo template_thehive.yml (Ej. thehiveuser.yml):
+* En la carpeta `host_vars` agregar un archivo .yml que tiene la forma del archivo `template_thehive.yml`, renombrar de la forma `nombre_usuario.yml`
+(Ej. thehiveuser.yml) y modificar las variables de configuracion para la instalacion de TheHive.
 
-    ```
-    
-    ansible_host: '172.16.81.111'
+
+Dentro del archivo `template_thehive.yml` tenemos las siguientes variables:
+
+
+- `ansible_host` y `ansible_user` corresponden a la IP y Username del host objetivo (el Master Node).
+
+    ```yaml
+    ansible_host: '172.16.81.70'
     ansible_user: 'thehive'
-    
-
     ```
+
     
 *  Ejecutar ansible sobre el servidor `"thehiveuser"` (el username se define en la opcion extra_var):
 
