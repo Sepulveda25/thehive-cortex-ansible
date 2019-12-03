@@ -43,9 +43,9 @@ Dentro del archivo `template_thehive.yml` tenemos las siguientes variables:
 
   Ejecutar ansible sobre el servidor `"thehiveuser"` (el username se define en la opcion extra_var):
 
-    ```
-    ansible-playbook -i hosts -l thehive setup.yml --extra-var "target=thehiveuser" --ask-become-pass
-    ```
+  ```
+  ansible-playbook -i hosts -l thehive setup.yml --extra-var "target=thehiveuser" --ask-become-pass
+   ```
 
 ## Post-despligue
 
