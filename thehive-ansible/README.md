@@ -31,8 +31,8 @@
 (Ej. thehiveuser.yml) y modificar las variables de configuracion para la instalacion de TheHive.
 
 
- Dentro del archivo `template_thehive.yml` tenemos las siguientes variables:  `ansible_host` y `ansible_user` 
- corresponden a la IP y Username del host objetivo (el Master Node):
+ Dentro del archivo `template_thehive.yml` tenemos las siguientes variables:  `ansible_host` y `ansible_user` corresponden a la IP y Username del host objetivo (el Master Node):
+ 
     ```yaml
     ansible_host: '172.16.81.70'
     ansible_user: 'thehive'
