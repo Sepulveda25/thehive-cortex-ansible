@@ -23,7 +23,7 @@
 
 
 
-## [Instrucciones para el despliegue de Cortex]
+## Instrucciones para el despliegue de Cortex
 
 
 *  Agregar nombre de usuario del servidor `host` en el grupo `cortex` (Ej. user thehiveuser):
