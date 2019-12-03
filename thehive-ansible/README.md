@@ -49,8 +49,9 @@
 1.  Ingresar desde el navegador a: `ipserverthehive:9000`
 2.  Activar opcion `"Actualizar base de datos"`.
 3.  Crear usuario `ADMIN`.
-4.  Crear `API-KEY` en `Users` (Barra superior derecha en la lista deplegable "ADMIN").
-5.  Activar la opcion `Reveal` sobre la `API-KEY`, la misma sera usada para el despliegue de Cortex.
+4.  Una vez creado el usuario administrador, crear una cuenta nueva para usuarios no administradores.
+5.  Luego crear una `API-KEY` para el usuario no administrador en `Users` (Barra superior derecha en la lista deplegable "ADMIN").
+6.  Activar la opcion `Reveal` sobre la `API-KEY`, la misma sera usada para el despliegue de Cortex.
 
 
 
