@@ -16,6 +16,12 @@
 2. Agregar clave SSH publica del dispositivo desde el cual se realiza el despliegue sobre el servidor objetivo y usuario creado en el paso anterior.
 (No agregar claves SSH  sobre el usuario ROOT del servidor donde se realizara el despliegue).
 
+3. [Saltear por ahora] Mantener actualizada la carpeta `roles/cortex_analyzers/files/my_analyzers` con los Analyzers desarollados.
+
+3. Mantener actualizada la carpeta `roles/cortex_responders/files/my_responders` con los Responders desarollados, los mismos se pueden descargar del repositorio:  
+[Repositorio con los Responders creados](https://gitlab.unc.edu.ar/csirt/thehive-cortex-responders)
+
+
 
 ## [Instrucciones para el despliegue de Cortex]
 
