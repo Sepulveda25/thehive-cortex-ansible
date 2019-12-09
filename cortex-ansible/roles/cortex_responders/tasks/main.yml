@@ -4,7 +4,7 @@
   become: yes
   become_user: root
   copy:
-    src: "{{ role_path }}/files/my_responders/" #folder from files folder in this role
+    src: "{{ role_path }}/files/myresponders/" #folder from files folder in this role
     dest: "{{path_my_own_responders}}"
 
     
@@ -12,6 +12,7 @@
   become: yes
   become_user: root
   blockinfile:
+    marker: ""
     path: /etc/cortex/application.conf
     block: |
            ## RESPONDERS
@@ -19,7 +20,7 @@
            responder {
             # Absolute path where you have pulled the Cortex-Analyzers repository.
                path =  [
-                      "{{path_default_analyzers_and_responders }}",
+                      "{{path_default_analyzers_and_responders }}/responders",
                       "{{path_my_own_responders }}"
                ]
                # Sane defaults. Do not change unless you know what you are doing.
@@ -38,7 +39,7 @@
   become_user: root
   systemd:
     name: cortex.service
-    state: started
+    state: restarted
     enabled: yes
 
 - name: Make sure a service cortex.service is running

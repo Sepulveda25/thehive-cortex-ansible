@@ -54,7 +54,7 @@
   become_user: root
   systemd:
     name: elasticsearch.service
-    state: started
+    state: restarted
     enabled: yes
 
 - name: Make sure a service elasticsearch.service is running

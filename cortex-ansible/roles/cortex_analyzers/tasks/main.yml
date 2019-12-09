@@ -3,7 +3,7 @@
   become: yes
   become_user: root
   copy:
-    src: "{{ role_path }}/files/my_analyzers/" #folder from files folder in this role
+    src: "{{ role_path }}/files/myanalyzers/" #folder from files folder in this role
     dest: "{{path_my_own_analyzers}}"
 
 
@@ -16,7 +16,7 @@
     regexp: '(^|\s)path =(\s+).*' #matchea si empieza con un espacio en blanco y path..
     replace: |
               path =  [
-                  "{{path_default_analyzers_and_responders }}",
+                  "{{path_default_analyzers_and_responders}}/analyzers",
                   "{{path_my_own_analyzers }}"
               ]
 
@@ -38,7 +38,7 @@
   become_user: root
   systemd:
     name: cortex.service
-    state: started
+    state: restarted
     enabled: yes
 
 - name: Make sure a service cortex.service is running

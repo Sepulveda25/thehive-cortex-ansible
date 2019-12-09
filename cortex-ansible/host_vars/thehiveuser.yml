@@ -1,9 +1,9 @@
-ansible_host: '172.16.81.70'
+ansible_host: '172.16.81.115'
 ansible_user: 'thehive'
 
-path_default_analyzers_and_responders: "/opt/Cortex-Analyzers/"
+path_default_analyzers_and_responders: "/opt/Cortex-Analyzers"
 
-path_my_own_analyzers: " "
+path_my_own_analyzers: "/opt/Cortex-Analyzers/myanalyzers"
 
 parallelism_min_analyzers: 2 #default 2
 parallelism_factor_analyzers: 2.0  #default 2.0
