@@ -22,10 +22,10 @@
 
 *  Agregar nombre de usuario del servidor `host` en el grupo `thehive` (Ej. user thehiveuser):
 
-    ```
-    [thehive]
-    thehiveuser
-    ```
+```
+[thehive]
+thehiveuser
+```
     
 * En la carpeta `host_vars` agregar un archivo .yml que tiene la forma del archivo `template_thehive.yml`, renombrar de la forma `nombre_usuario.yml`
 (Ej. thehiveuser.yml) y modificar las variables de configuracion para la instalacion de TheHive.
@@ -33,16 +33,16 @@
 
  Dentro del archivo `template_thehive.yml` tenemos las siguientes variables:  `ansible_host` y `ansible_user` corresponden a la IP y Username del host objetivo (el Master Node):
  
-    ```yaml
-    ansible_host: '172.16.81.70'
-    ansible_user: 'thehive'
-    ```
+```yaml
+ansible_host: '172.16.81.70'
+ansible_user: 'thehive'
+```
 
 *   Ejecutar ansible sobre el servidor `"thehiveuser"` (el username se define en la opcion extra_var):
 
-  ```
-  ansible-playbook -i hosts -l thehive setup.yml --extra-var "target=thehiveuser" --ask-become-pass
-   ```
+```bash
+ansible-playbook -i hosts -l thehive setup.yml --extra-var "target=thehiveuser" --ask-become-pass
+```
 
 ## Post-despligue
 
