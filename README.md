@@ -7,7 +7,7 @@
   * [Ansible para la instalacion de Cortex](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/tree/master/cortex-ansible#ansible-para-la-instalacion-de-cortex)
 
 ## Guía de instalacion
-Respetar el orden de instalacion:
+Respetar el orden de instalacion. Si se va a desplegar ansible con el usuario root cuando se pida la clave en `BECOME (sudo)` solo darle `enter`.  
 
 1. Instalar The Hive
 2. Instalar Cortex
