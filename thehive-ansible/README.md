@@ -1,5 +1,9 @@
 # Ansible para la instalacion de TheHive
 
+[Ir a documento raiz](https://gitlab.unc.edu.ar/csirt/csirt-docs/tree/master#csirt-docs)
+
+[Ir a Ansible para la instalacion de Cortex](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/tree/master/cortex-ansible#ansible-para-la-instalacion-de-cortex)
+
 ## Tabla de contenidos
 
 1. [Pre-requisitos](#pre-requisitos)
