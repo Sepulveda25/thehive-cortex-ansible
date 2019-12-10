@@ -77,10 +77,9 @@
    ```
 
 ## Post-despligue
+Despues del despliegue de cortex seguir la siguiente guia:
 
-1.  Agregar
-2.  agregar
-
+[Guía de inico rápido](https://gitlab.unc.edu.ar/csirt/csirt-docs/blob/master/gestion-de-incidentes/incidentes-install-guide.md#gu%C3%ADa-de-inicio-r%C3%A1pido)
 
 
 
