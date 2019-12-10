@@ -28,10 +28,10 @@
 
 *  Agregar nombre de usuario del servidor `host` en el grupo `cortex` (Ej. user thehiveuser):
 
-    ```
-      [cortex]
-      thehiveuser
-    ```
+```yaml
+    [cortex]
+    thehiveuser
+```
     
     
 * En la carpeta `host_vars` agregar un archivo .yml que tiene la forma del archivo `template_cortex.yml`, renombrar de la forma `nombre_usuario.yml`
@@ -50,7 +50,7 @@
   6. Las variables `parallelism_min_responders`, `parallelism_factor_responders` y `parallelism_max_responders` tienen que ver con cuestiones de rendimiento de los Analyzers, 
   recomendamos dejar las mismas en los valores por defecto, en caso de querer modificarlas consultar la documentacion de Cortex. 
 
-    ```
+```yaml
     ansible_host: '172.16.81.70'
     ansible_user: 'thehive'
     
@@ -68,13 +68,13 @@
     parallelism_factor_responders: 2.0  #default 2.0
     parallelism_max_responders: 4 #default 4
 
-    ```
+```
 
 *   Ejecutar ansible sobre el servidor `"thehiveuser"` (el username se define en la opcion extra_var):
 
-  ```
+```bash
   ansible-playbook -i hosts -l cortex setup.yml --extra-var "target=thehiveuser" --ask-become-pass
-   ```
+```
 
 ## Post-despligue
 Despues del despliegue de cortex seguir la siguiente guia:
