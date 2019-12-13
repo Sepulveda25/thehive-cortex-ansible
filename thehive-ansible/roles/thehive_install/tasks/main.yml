@@ -8,12 +8,28 @@
     line: deb https://dl.bintray.com/thehive-project/debian-stable any main
     create: yes
 
+
+- name: Instala curl
+  become: yes
+  become_user: root
+  apt:
+    name: curl
+
 - name: Add an apt key by id from a keyserver
   become: yes
   become_user: root
-  apt_key:
+#  shell: curl https://raw.githubusercontent.com/TheHive-Project/TheHive/master/PGP-PUBLIC-KEY | sudo apt-key add -
+#  args:
+#    executable: /bin/bash
+  apt_key: 
     url: https://raw.githubusercontent.com/TheHive-Project/TheHive/master/PGP-PUBLIC-KEY
     state: present
+
+- name: Actualizar repo
+  become: yes
+  become_user: root
+  apt:
+   update_cache: yes
 
 - name: Instalar TheHive
   become: yes
