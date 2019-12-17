@@ -48,6 +48,8 @@ ansible_user: 'thehive'
 ansible-playbook -i hosts -l thehive setup.yml --extra-var "target=thehiveuser" --ask-become-pass
 ```
 
+`[IMPORTANTE]` Cuando se ejecute el comando anterior se va a pedir una contraseña de usuario contra el que se realiza el despliegue (ansible_user). En caso de ser root solo presionar enter.
+
 ## Post-despligue
 
 1.  Ingresar desde el navegador a: `ipserverthehive:9000`
