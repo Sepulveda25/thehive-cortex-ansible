@@ -1,4 +1,4 @@
-ansible_host: '172.16.81.115'
+ansible_host: '172.16.81.110'
 ansible_user: 'thehive'
 
 path_default_analyzers_and_responders: "/opt/Cortex-Analyzers"
