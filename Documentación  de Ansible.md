@@ -46,7 +46,7 @@ En la carpeta principal, thehive-ansible, encontramos también a la carpeta host
 
 
 
-La instalación comienza con la ejecución del comando ´ansible-playbook -i hosts -l cortex setup.yml --extra-var "target=thehiveuser --ask-become-pass´ dentro de la carpeta cortex-ansible. Esta instrucción ejecuta la instalación de los roles dentro del archivo setup: [java_install][java_install], [elastic_install][elastic_install], [cortex_install][cortex_install], [download_default_analyzers_responders][download_default_analyzers_responders], [cortex_analyzers][cortex_analyzers] y [cortex_responders][cortex_responders].
+La instalación comienza con la ejecución del comando ´ansible-playbook -i hosts -l cortex setup.yml --extra-var "target=thehiveuser --ask-become-pass´ dentro de la carpeta cortex-ansible. Esta instrucción ejecuta la instalación de los roles dentro del archivo setup: [java_install][java_install], [elastic_install][elastic_install], [cortex_install][cortex_install], [download_default_analyzers_responders][download_default_analyzers_responders], [####cortex_analyzers][cortex_analyzers] y [cortex_responders][cortex_responders].
 
 #### Roles
 
@@ -81,7 +81,7 @@ Finalmente, se reinician los daemon para ejecutar el servicio de cortex, se habi
 En la carpeta de este role, encontramos la subcarpeta task y dentro de ella el archivo main.yml, que ejecuta las siguientes tareas: Actualiza los repositorios e instala un conjunto de dependencias necesarias para los analyzers y los responders (python-pip, python2.7-dev, python3-pip, python3-dev, ssdeep, libfuzzy-dev, libfuzzy2, libimage-exiftool-perl, libmagic1, build-essential, git y libssl-dev), con pip y pip3 se instala setuptools, luego se clona el repositorio de Analyzers y Responders de Cortex (`https://github.com/TheHive-Project/Cortex-Analyzers`)  en el directorio "{{path_default_analyzers_and_responders }}".
 Posteriormente, se buscan los requerimientos necesarios para instalar en el archivo requirements.txt en el directorio mencionado anteriormente. Una vez localizados, estos requerimientos se instalan con pip y pip3.
 
-#### [cortex_analyzers]:
+#### cortex_analyzers:
 
 En la carpeta de este role, encontramos dos subcarpetas: files y task.
 En la subcarpeta task encontramos, dentro de ella, el archivo main.yml que ejecuta las siguientes tareas:
