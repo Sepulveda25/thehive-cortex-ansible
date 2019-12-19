@@ -46,7 +46,7 @@ En la carpeta principal, thehive-ansible, encontramos también a la carpeta host
 
 
 
-La instalación comienza con la ejecución del comando ´ansible-playbook -i hosts -l cortex setup.yml --extra-var "target=thehiveuser --ask-become-pass´ dentro de la carpeta cortex-ansible. Esta instrucción ejecuta la instalación de los roles dentro del archivo setup: [java_install][####java_install], [elastic_install][####elastic_install], [cortex_install][####cortex_install], [download_default_analyzers_responders][####download_default_analyzers_responders], [cortex_analyzers][####cortex_analyzers] y [cortex_responders][####cortex_responders].
+La instalación comienza con la ejecución del comando ´ansible-playbook -i hosts -l cortex setup.yml --extra-var "target=thehiveuser --ask-become-pass´ dentro de la carpeta cortex-ansible. Esta instrucción ejecuta la instalación de los roles dentro del archivo setup: [java_install](####java_install), [elastic_install](####elastic_install), [cortex_install](####cortex_install), [download_default_analyzers_responders](####download_default_analyzers_responders), [cortex_analyzers](####cortex_analyzers) y [cortex_responders](####cortex_responders).
 
 #### Roles
 
