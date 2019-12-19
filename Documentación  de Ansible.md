@@ -46,14 +46,14 @@ En la carpeta principal, thehive-ansible, encontramos también a la carpeta host
 
 
 
-La instalación comienza con la ejecución del comando ´ansible-playbook -i hosts -l cortex setup.yml --extra-var "target=thehiveuser --ask-become-pass´ dentro de la carpeta cortex-ansible. Esta instrucción ejecuta la instalación de los roles dentro del archivo setup: [java_install][java_install], [elastic_install][elastic_install], [cortex_install][cortex_install], [download_default_analyzers_responders][download_default_analyzers_responders], [####cortex_analyzers][cortex_analyzers] y [cortex_responders][cortex_responders].
+La instalación comienza con la ejecución del comando ´ansible-playbook -i hosts -l cortex setup.yml --extra-var "target=thehiveuser --ask-become-pass´ dentro de la carpeta cortex-ansible. Esta instrucción ejecuta la instalación de los roles dentro del archivo setup: [java_install][####java_install], [elastic_install][####elastic_install], [cortex_install][####cortex_install], [download_default_analyzers_responders][####download_default_analyzers_responders], [cortex_analyzers][####cortex_analyzers] y [cortex_responders][####cortex_responders].
 
 #### Roles
 
-#### [java_install]:
+#### java_install:
 En la carpeta de este role, encontramos la subcarpeta task y dentro de ella el archivo main.yml, que ejecuta la instalación de Java en su versión 11: _default-jre_ y _openjdk-11-jre-headless_
 
-#### [elastic_install]:
+#### elastic_install:
 En la carpeta de este role, encontramos la subcarpeta task y dentro de ella el archivo main.yml, que ejecuta las siguientes tareas: agrega una clave desde un keyserver (controlando que no exista previamente), luego configura el repositorio de elastic (ubicado en **/etc/apt/sources.list.d/elastic-5.x.list**) agregando la línea
 `deb https://artifacts.elastic.co/packages/5.x/apt stable main` al archivo anteriomente mencionado.
 
@@ -68,7 +68,7 @@ A continuación, se procede a instalar el soporte para apt con https, la instala
 
 Finalmente, reiniciamos los daemon para ejecutar el servicio de elasticsearch, habilitamos e iniciamos el servicio y concluimos con la revisión del estado de este.
 
-#### [cortex_install]:
+#### cortex_install:
 En la carpeta de este role, encontramos la subcarpeta task y dentro de ella el archivo main.yml, que ejecuta las siguientes tareas: agrega el repo de Cortex: para esto necesitaremos crear un archivo en la lista de sources y luego agregar el repositorio propiamente dicho.
 Para la primera parte de esta tarea, creamos el archivo **/etc/apt/sources.list.d/thehive-project.list** y luego escribimos en él la linea del repositorio de TheHive: `deb https://dl.bintray.com/thehive-project/debian-stable any main`.
 Los pasos anteriores no serán ejecutados si previamente se instaló TheHive en el sistema. Luego, se agrega una clave desde un servidor (`https://raw.githubusercontent.com/TheHive-Project/Cortex/master/PGP-PUBLIC-KEY`), se instala Cortex desde el repositorio, se crea la carpeta /etc/thehive (esto sera ejecutado si previamente se ejecuto el ansible de TheHive en el sistema o si la carpeta ya existía) se crea una clave _play.http.secret.key_ y se la agrega en el archivo **/etc/cortex/application.conf**.
@@ -77,7 +77,7 @@ Finalmente, se reinician los daemon para ejecutar el servicio de cortex, se habi
 
 
 
-#### [download_default_analyzers_responders]:
+#### download_default_analyzers_responders:
 En la carpeta de este role, encontramos la subcarpeta task y dentro de ella el archivo main.yml, que ejecuta las siguientes tareas: Actualiza los repositorios e instala un conjunto de dependencias necesarias para los analyzers y los responders (python-pip, python2.7-dev, python3-pip, python3-dev, ssdeep, libfuzzy-dev, libfuzzy2, libimage-exiftool-perl, libmagic1, build-essential, git y libssl-dev), con pip y pip3 se instala setuptools, luego se clona el repositorio de Analyzers y Responders de Cortex (`https://github.com/TheHive-Project/Cortex-Analyzers`)  en el directorio "{{path_default_analyzers_and_responders }}".
 Posteriormente, se buscan los requerimientos necesarios para instalar en el archivo requirements.txt en el directorio mencionado anteriormente. Una vez localizados, estos requerimientos se instalan con pip y pip3.
 
