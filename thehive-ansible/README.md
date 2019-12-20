@@ -17,12 +17,17 @@
 " del siguiente repositorio: 
    [Repositorio con los requisitos de hardware](https://github.com/TheHive-Project/TheHiveDocs)
 
-2. Agregar clave SSH publica del dispositivo desde el cual se realiza el despliegue sobre el servidor objetivo y usuario creado en el paso anterior.
-(No agregar claves SSH  sobre el usuario ROOT del servidor donde se realizara el despliegue).
+2. Agregar clave SSH publica del host desde el cual se realiza el despliegue en el servidor donde se pretende instalar TheHive, para hacer esto se puede copiar manualmente la public key del host en el archivo autorized_keys de la carpeta /home/THEHIVEUSER/.ssh o con el comando: ssh-copy-id THEHIVEUSER@THEHIVEIP (tambien ejecutado desde el host).
 
 
 ## Instrucciones para el despliegue de TheHive
 
+
+    
+`[IMPORTANTE]` Cuando se ejecute el comando para el despliegue del Ansible se le solicitara el pass de SUDO (BECOME_PASSWORD o SUDO_PASSWORD) para el usuario del servidor donde se pretende instalar TheHive, en este caso tenemos tres alternativas:
+   * Ingresar el password en caso de conocerlo.
+   * Si el usuario es root presionar enter y no ingresar nada (presionar enter).
+   * O en caso de no cumplirse ninguna de las opciones anteriores se le debe permitir ejecutar sudo sin solicitar la contraseña, esto se hace agregando una entrada al archivo sudoers (sudo visudo), la entrada es: THEHIVEUSER ALL=(ALL) NOPASSWD: ALL (lo mismo se puede realizar creando un archivo temporal en /etc/sudoers.d/temporal_THEHIVEUSER y agregando la misma linea). En este caso no se debe ingresar contraseña (presionar enter). 
 
 *  Agregar nombre de usuario del servidor `host` en el grupo `thehive` (Ej. user thehiveuser):
 
@@ -47,8 +52,6 @@ ansible_user: 'thehive'
 ```bash
 ansible-playbook -i hosts -l thehive setup.yml --extra-var "target=thehiveuser" --ask-become-pass
 ```
-
-`[IMPORTANTE]` Cuando se ejecute el comando anterior se va a pedir una contraseña de usuario contra el que se realiza el despliegue (ansible_user). En caso de ser root solo presionar enter.
 
 ## Post-despligue
 
