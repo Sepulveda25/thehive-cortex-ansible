@@ -8,8 +8,8 @@
 La instalación comienza con la ejecución del comando ansible-playbook -i hosts -l thehive setup.yml --extra-var "target=thehiveuser --ask-become-pass dentro de la carpeta thehive-ansible.
 Esta instrucción ejecuta la instalación de los roles dentro del archivo setup: 
 - [java_install](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#java_install)
-- elastic_install
-- thehive_install.
+- [elastic_install](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#elastic_install)
+- [thehive_install](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#thehive_install)
 
 #### Roles
 
@@ -51,12 +51,12 @@ En la carpeta principal, thehive-ansible, encontramos también a la carpeta host
 
 La instalación comienza con la ejecución del comando ´ansible-playbook -i hosts -l cortex setup.yml --extra-var "target=thehiveuser --ask-become-pass´ dentro de la carpeta cortex-ansible. Esta instrucción ejecuta la instalación de los roles dentro del archivo setup:
 
-  * [java_install](####java_install)
-  * [elastic_install](####elastic_install)
-  * [cortex_install](####cortex_install)
-  * [download_default_analyzers_responders](####download_default_analyzers_responders)
-  * [cortex_analyzers](####cortex_analyzers)
-  * [cortex_responders](####cortex_responders).
+  * [java_install](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#java_install-1)
+  * [elastic_install](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#elastic_install-1)
+  * [cortex_install](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#cortex_installl)
+  * [download_default_analyzers_responders](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#download_default_analyzers_responders)
+  * [cortex_analyzers](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#cortex_analyzers)
+  * [cortex_responders](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#cortex_responders)
 
 #### Roles
 
