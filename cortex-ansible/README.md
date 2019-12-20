@@ -73,6 +73,14 @@
     parallelism_max_responders: 4 #default 4
 
 ```
+    
+`[IMPORTANTE]` Cuando se ejecute el comando para el despliegue del Ansible se le solicitara el pass de SUDO (BECOME_PASSWORD o SUDO_PASSWORD) para el usuario del servidor donde se pretende instalar Cortex, en este caso tenemos tres alternativas:
+   * Ingresar el password en caso de conocerlo.
+   * Si el usuario es root presionar enter y no ingresar nada (presionar enter).
+   * O en caso de no cumplirse ninguna de las opciones anteriores se le debe permitir ejecutar sudo sin solicitar la contraseña, esto se hace agregando una entrada al archivo sudoers (sudo visudo), la entrada es: CORTEX ALL=(ALL) NOPASSWD: ALL (lo mismo se puede realizar creando un archivo temporal en /etc/sudoers.d/temporal_CORTEX y agregando la misma linea). En este caso no se debe ingresar contraseña (presionar enter). 
+
+*  Agregar nombre de usuario del servidor `host` en el grupo `thehive` (Ej. user thehiveuser):
+
 
 *   Ejecutar ansible sobre el servidor `"thehiveuser"` (el username se define en la opcion extra_var):
 
@@ -80,7 +88,6 @@
   ansible-playbook -i hosts -l cortex setup.yml --extra-var "target=thehiveuser" --ask-become-pass
 ```
 
-`[IMPORTANTE]` Cuando se ejecute el comando anterior se va a pedir una contraseña de usuario contra el que se realiza el despliegue (ansible_user). En caso de ser root solo presionar enter.
 
 ## Post-despligue
 Despues del despliegue de cortex seguir la siguiente guia:
