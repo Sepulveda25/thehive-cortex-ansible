@@ -6,7 +6,10 @@
 
 
 La instalación comienza con la ejecución del comando ansible-playbook -i hosts -l thehive setup.yml --extra-var "target=thehiveuser --ask-become-pass dentro de la carpeta thehive-ansible.
-Esta instrucción ejecuta la instalación de los roles dentro del archivo setup: java_install, elastic_install y thehive_install.
+Esta instrucción ejecuta la instalación de los roles dentro del archivo setup: 
+- [java_install](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#java_install)
+- [elastic_install](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#elastic_install)
+- [thehive_install](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#thehive_install)
 
 #### Roles
 
@@ -48,12 +51,12 @@ En la carpeta principal, thehive-ansible, encontramos también a la carpeta host
 
 La instalación comienza con la ejecución del comando ´ansible-playbook -i hosts -l cortex setup.yml --extra-var "target=thehiveuser --ask-become-pass´ dentro de la carpeta cortex-ansible. Esta instrucción ejecuta la instalación de los roles dentro del archivo setup:
 
-  * [java_install](####java_install)
-  * [elastic_install](####elastic_install)
-  * [cortex_install](####cortex_install)
-  * [download_default_analyzers_responders](####download_default_analyzers_responders)
-  * [cortex_analyzers](####cortex_analyzers)
-  * [cortex_responders](####cortex_responders).
+  * [java_install](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#java_install-1)
+  * [elastic_install](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#elastic_install-1)
+  * [cortex_install](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#cortex_installl)
+  * [download_default_analyzers_responders](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#download_default_analyzers_responders)
+  * [cortex_analyzers](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#cortex_analyzers)
+  * [cortex_responders](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#cortex_responders)
 
 #### Roles
 
@@ -95,5 +98,19 @@ En la subcarpeta task encontramos, dentro de ella, el archivo main.yml que ejecu
 Copia los _analyzers_ al path _path_my_own_analyzers_ y remplaza este ultimo en el archivo /etc/cortex/application.conf.
 
 Luego, cambiamos las variables _parallelism-min_, _parallelism-factor_ y _parallelism-max_ en el archivo /etc/cortex/application.conf.
+
+Finalmente, se reinician los daemon para ejecutar el servicio de cortex, se habilita e inicia el servicio y se comprueba su estado.
+
+En la subcarpeta files, se encuentra el directorio myanalyzers donde estan los analyzers. 
+
+
+
+#### cortex_responders:
+
+En la carpeta de este role, encontramos dos subcarpetas: files y task.
+En la subcarpeta task encontramos, dentro de ella, el archivo main.yml que ejecuta las siguientes tareas:
+Copia los _responders_ al path _path_my_own_responders_ y remplaza este ultimo en el archivo /etc/cortex/application.conf.
+
+Posteriormente se agrega un bloque de información con la configuración del responder en el archivo /etc/cortex/application.conf
 
 Finalmente, se reinician los daemon para ejecutar el servicio de cortex, se habilita e inicia el servicio y se comprueba su estado.
