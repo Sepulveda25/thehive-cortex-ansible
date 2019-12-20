@@ -37,23 +37,23 @@
 ```
     
 
-    * En la carpeta `host_vars` agregar un archivo .yml que tiene la forma del archivo `template_cortex.yml`, renombrar de la forma `nombre_usuario.yml`
-    (Ej. thehiveuser.yml) y modificar las variables de configuracion para la instalacion de Cortex.
+* En la carpeta `host_vars` agregar un archivo .yml que tiene la forma del archivo `template_cortex.yml`, renombrar de la forma `nombre_usuario.yml`
+(Ej. thehiveuser.yml) y modificar las variables de configuracion para la instalacion de Cortex.
 
 
-        Dentro del archivo `template_cortex.yml` tenemos las siguientes variables:  
-        
-        1. `ansible_host` y  `ansible_user` corresponden a la IP y Username del host objetivo:
-        2. `path_default_analyzers_and_responders` se corresponde con el path donde se almacenaran los Analyzers y Responder por defecto que se descargan automaticamente del repositorio: 
-        [Repositorio con los Analyzers y Responder por defecto](https://github.com/TheHive-Project/Cortex-Analyzers)
-        3. `path_my_own_analyzers` es el path donde se copian los Analyzers propios almacenados en la carpeta `roles/cortex_analyzers/files/my_analyzers`
-        4. `path_my_own_responders` es el path donde se copian los Responders propios almacenados en la carpeta `roles/cortex_responders/files/my_responders`
-        5. Las variables `parallelism_min_analyzers`, `parallelism_factor_analyzers` y `parallelism_max_analyzers` tienen que ver con cuestiones de rendimiento de los Analyzers, 
-        recomendamos dejar las mismas en los valores por defecto, en caso de querer modificarlas consultar la documentacion de Cortex. 
-        6. Las variables `parallelism_min_responders`, `parallelism_factor_responders` y `parallelism_max_responders` tienen que ver con cuestiones de rendimiento de los Analyzers, 
-        recomendamos dejar las mismas en los valores por defecto, en caso de querer modificarlas consultar la documentacion de Cortex. 
+Dentro del archivo `template_cortex.yml` tenemos las siguientes variables:  
 
-        ```yaml
+1. `ansible_host` y  `ansible_user` corresponden a la IP y Username del host objetivo:
+2. `path_default_analyzers_and_responders` se corresponde con el path donde se almacenaran los Analyzers y Responder por defecto que se descargan automaticamente del repositorio: 
+[Repositorio con los Analyzers y Responder por defecto](https://github.com/TheHive-Project/Cortex-Analyzers)
+3. `path_my_own_analyzers` es el path donde se copian los Analyzers propios almacenados en la carpeta `roles/cortex_analyzers/files/my_analyzers`
+4. `path_my_own_responders` es el path donde se copian los Responders propios almacenados en la carpeta `roles/cortex_responders/files/my_responders`
+5. Las variables `parallelism_min_analyzers`, `parallelism_factor_analyzers` y `parallelism_max_analyzers` tienen que ver con cuestiones de rendimiento de los Analyzers, 
+recomendamos dejar las mismas en los valores por defecto, en caso de querer modificarlas consultar la documentacion de Cortex. 
+6. Las variables `parallelism_min_responders`, `parallelism_factor_responders` y `parallelism_max_responders` tienen que ver con cuestiones de rendimiento de los Analyzers, 
+recomendamos dejar las mismas en los valores por defecto, en caso de querer modificarlas consultar la documentacion de Cortex. 
+
+```yaml
             ansible_host: '172.16.81.70'
             ansible_user: 'thehive'
             
@@ -71,12 +71,12 @@
             parallelism_factor_responders: 2.0  #default 2.0
             parallelism_max_responders: 4 #default 4
 
-        ```
+```
     
 `[IMPORTANTE]` Cuando se ejecute el comando para el despliegue del Ansible se le solicitara el pass de SUDO (BECOME_PASSWORD o SUDO_PASSWORD) para el usuario del servidor donde se pretende instalar Cortex, en este caso tenemos tres alternativas:
-    1. Ingresar el password en caso de conocerlo.
-    2. Si el usuario es root presionar enter y no ingresar nada (presionar enter).
-    3. O en caso de no cumplirse ninguna de las opciones anteriores se le debe permitir ejecutar sudo sin solicitar la contraseña, esto se hace agregando una entrada al archivo sudoers (sudo visudo), la entrada es: CORTEX ALL=(ALL) NOPASSWD: ALL (lo mismo se puede realizar creando un archivo temporal en /etc/sudoers.d/temporal_CORTEX y agregando la misma linea). En este caso no se debe ingresar contraseña (presionar enter). 
+1. Ingresar el password en caso de conocerlo.
+2. Si el usuario es root presionar enter y no ingresar nada (presionar enter).
+3. O en caso de no cumplirse ninguna de las opciones anteriores se le debe permitir ejecutar sudo sin solicitar la contraseña, esto se hace agregando una entrada al archivo sudoers (sudo visudo), la entrada es: CORTEX ALL=(ALL) NOPASSWD: ALL (lo mismo se puede realizar creando un archivo temporal en /etc/sudoers.d/temporal_CORTEX y agregando la misma linea). En este caso no se debe ingresar contraseña (presionar enter). 
 
 
 *   Ejecutar ansible sobre el servidor `"thehiveuser"` (el username se define en la opcion extra_var):
