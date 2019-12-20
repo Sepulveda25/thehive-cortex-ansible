@@ -57,6 +57,7 @@
   become_user: root
   blockinfile:
     path: /etc/thehive/application.conf
+    marker: ""
     block: |
       # Secret key
       # ~~~~~
