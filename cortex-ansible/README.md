@@ -17,7 +17,7 @@
 1. Contar con un servidor con Ubuntu Server 18.04. Los requisitos del servidor se encuentran en el apartado "Hardware Pre-requisites
 " del siguiente repositorio:  [Repositorio con los requisitos de hardware](https://github.com/TheHive-Project/TheHiveDocs)
 
-2. Agregar clave SSH publica del host desde el cual se realiza el despliegue en el servidor donde se pretende instalar TheHive, para hacer esto se puede copiar manualmente la public key del host en el archivo autorized_keys de la carpeta /home/THEHIVEUSER/.ssh o con el comando: ssh-copy-id CORTEXUSER@CORTEXIP (tambien ejecutado desde el host).
+2. Agregar clave SSH publica del host desde el cual se realiza el despliegue en el servidor donde se pretende instalar Cortex, para hacer esto se puede copiar manualmente la public key del host en el archivo autorized_keys de la carpeta /home/CORTEX/.ssh o con el comando: ssh-copy-id CORTEXUSER@CORTEXIP (tambien ejecutado desde el host).
 
 3. [Saltear por ahora] Mantener actualizada la carpeta `roles/cortex_analyzers/files/my_analyzers` con los Analyzers desarollados.
 
