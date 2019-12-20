@@ -25,9 +25,9 @@
 
     
 `[IMPORTANTE]` Cuando se ejecute el comando para el despliegue del Ansible se le solicitara el pass de SUDO (BECOME_PASSWORD o SUDO_PASSWORD) para el usuario del servidor donde se pretende instalar TheHive, en este caso tenemos tres alternativas:
-* Ingresar el password en caso de conocerlo.
-* Si el usuario es root presionar enter y no ingresar nada (presionar enter).
-* O en caso de no cumplirse ninguna de las opciones anteriores se le debe permitir ejecutar sudo sin solicitar la contraseña, esto se hace agregando una entrada al archivo sudoers (sudo visudo), la entrada es: THEHIVEUSER ALL=(ALL) NOPASSWD: ALL (lo mismo se puede realizar creando un archivo temporal en /etc/sudoers.d/temporal_THEHIVEUSER y agregando la misma linea). En este caso no se debe ingresar contraseña (presionar enter). 
+1. Ingresar el password en caso de conocerlo.
+2. Si el usuario es root presionar enter y no ingresar nada (presionar enter).
+3. O en caso de no cumplirse ninguna de las opciones anteriores se le debe permitir ejecutar sudo sin solicitar la contraseña, esto se hace agregando una entrada al archivo sudoers (sudo visudo), la entrada es: THEHIVEUSER ALL=(ALL) NOPASSWD: ALL (lo mismo se puede realizar creando un archivo temporal en /etc/sudoers.d/temporal_THEHIVEUSER y agregando la misma linea). En este caso no se debe ingresar contraseña (presionar enter). 
 
 *  Agregar nombre de usuario del servidor `host` en el grupo `thehive` (Ej. user thehiveuser):
 
@@ -40,7 +40,7 @@ thehiveuser
 (Ej. thehiveuser.yml) y modificar las variables de configuracion para la instalacion de TheHive.
 
 
- Dentro del archivo `template_thehive.yml` tenemos las siguientes variables:  `ansible_host` y `ansible_user` corresponden a la IP y Username del host objetivo (el Master Node):
+ Dentro del archivo `template_thehive.yml` tenemos las siguientes variables:  `ansible_host` y `ansible_user` corresponden a la IP y Username del host objetivo (el User del host donde se pretende instalar TheHive):
  
 ```yaml
 ansible_host: '172.16.81.70'
