@@ -43,7 +43,7 @@
       thread_pool.search.queue_size: 100000
       thread_pool.bulk.queue_size: 100000
 
-
+#systemctl daemon-reload
 - name: Reinicia los daemon para ejecutar el servicio de elasticsearch
   become: true
   systemd:
