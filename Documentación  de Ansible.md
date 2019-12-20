@@ -97,3 +97,17 @@ Copia los _analyzers_ al path _path_my_own_analyzers_ y remplaza este ultimo en 
 Luego, cambiamos las variables _parallelism-min_, _parallelism-factor_ y _parallelism-max_ en el archivo /etc/cortex/application.conf.
 
 Finalmente, se reinician los daemon para ejecutar el servicio de cortex, se habilita e inicia el servicio y se comprueba su estado.
+
+En la subcarpeta files, se encuentra el directorio myanalyzers donde estan los analyzers. 
+
+
+
+#### cortex_responders:
+
+En la carpeta de este role, encontramos dos subcarpetas: files y task.
+En la subcarpeta task encontramos, dentro de ella, el archivo main.yml que ejecuta las siguientes tareas:
+Copia los _responders_ al path _path_my_own_responders_ y remplaza este ultimo en el archivo /etc/cortex/application.conf.
+
+Posteriormente se agrega un bloque de información con la configuración del responder en el archivo /etc/cortex/application.conf
+
+Finalmente, se reinician los daemon para ejecutar el servicio de cortex, se habilita e inicia el servicio y se comprueba su estado.
