@@ -33,9 +33,11 @@
     executable: pip3
 
 - name: Borrar directorio /opt/Cortex-Analyzers/
-      file:
-        path: /opt/Cortex-Analyzers/
-        state: absent
+  become: yes
+  become_user: root
+  file:
+    path: /opt/Cortex-Analyzers/
+    state: absent
 
 - name: Clona el repositorio de Analyzers y Responders de Cortex en el directorio "{{path_default_analyzers_and_responders }}"
   become: yes
