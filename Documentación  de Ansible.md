@@ -6,7 +6,10 @@
 
 
 La instalación comienza con la ejecución del comando ansible-playbook -i hosts -l thehive setup.yml --extra-var "target=thehiveuser --ask-become-pass dentro de la carpeta thehive-ansible.
-Esta instrucción ejecuta la instalación de los roles dentro del archivo setup: java_install, elastic_install y thehive_install.
+Esta instrucción ejecuta la instalación de los roles dentro del archivo setup: 
+- [java_install](https://gitlab.unc.edu.ar/csirt/thehive-cortex-ansible/blob/master/Documentaci%C3%B3n%20%20de%20Ansible.md#java_install)
+- elastic_install
+- thehive_install.
 
 #### Roles
 
