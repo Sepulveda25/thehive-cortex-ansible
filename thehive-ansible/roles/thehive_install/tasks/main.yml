@@ -64,6 +64,16 @@
       # If you deploy your application to several instances be sure to use the same key!
       play.http.secret.key="{{playhttpsecretkey.stdout}}"
 
+# https://github.com/TheHive-Project/TheHive/issues/757
+- name: Insertar ' akka.remote.netty.tcp.hostname = "127.0.0.1" '' in /etc/thehive/application.conf
+  become: true
+  become_user: root
+  blockinfile:
+    path: /etc/thehive/application.conf
+    marker: ""
+    block: akka.remote.netty.tcp.hostname = "127.0.0.1" 
+
+
 - name: Reinicia los daemon para ejecutar el servicio de TheHive
   become: true
   systemd:
