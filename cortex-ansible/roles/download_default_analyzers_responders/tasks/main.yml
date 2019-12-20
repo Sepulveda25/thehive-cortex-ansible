@@ -32,12 +32,18 @@
     name: setuptools
     executable: pip3
 
+- name: Borrar directorio /opt/Cortex-Analyzers/
+      file:
+        path: /opt/Cortex-Analyzers/
+        state: absent
+
 - name: Clona el repositorio de Analyzers y Responders de Cortex en el directorio "{{path_default_analyzers_and_responders }}"
   become: yes
   become_user: root
   git:
     repo: https://github.com/TheHive-Project/Cortex-Analyzers
     dest: "{{path_default_analyzers_and_responders }}"
+    force: yes
 
 
 - name: Recursively find requirements.txt files in "{{path_default_analyzers_and_responders }}"
