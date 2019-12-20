@@ -54,22 +54,22 @@ recomendamos dejar las mismas en los valores por defecto, en caso de querer modi
 recomendamos dejar las mismas en los valores por defecto, en caso de querer modificarlas consultar la documentacion de Cortex. 
 
 ```yaml
-            ansible_host: '172.16.81.70'
-            ansible_user: 'thehive'
-            
-            path_default_analyzers_and_responders: "/opt/Cortex-Analyzers"
+    ansible_host: '172.16.81.70'
+    ansible_user: 'thehive'
+    
+    path_default_analyzers_and_responders: "/opt/Cortex-Analyzers"
 
-            path_my_own_analyzers: "/opt/Cortex-Analyzers/myanalyzers"
-            
-            parallelism_min_analyzers: 2 #default 2
-            parallelism_factor_analyzers: 2.0  #default 2.0
-            parallelism_max_analyzers: 4 #default 4
-            
-            path_my_own_responders: "/opt/Cortex-Analyzers/myresponders"
-            
-            parallelism_min_responders: 2 #default 2
-            parallelism_factor_responders: 2.0  #default 2.0
-            parallelism_max_responders: 4 #default 4
+    path_my_own_analyzers: "/opt/Cortex-Analyzers/myanalyzers"
+    
+    parallelism_min_analyzers: 2 #default 2
+    parallelism_factor_analyzers: 2.0  #default 2.0
+    parallelism_max_analyzers: 4 #default 4
+    
+    path_my_own_responders: "/opt/Cortex-Analyzers/myresponders"
+    
+    parallelism_min_responders: 2 #default 2
+    parallelism_factor_responders: 2.0  #default 2.0
+    parallelism_max_responders: 4 #default 4
 
 ```
     
