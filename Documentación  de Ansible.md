@@ -23,7 +23,6 @@ En la carpeta de este role, encontramos la subcarpeta task y dentro de ella el a
 Luego configura el repositorio de elastic (ubicado en /etc/apt/sources.list.d/elastic-5.x.list) agregando la línea `deb https://artifacts.elastic.co/packages/5.x/apt stable main` al archivo anteriomente mencionado. A continuación, se procede a instalar el soporte para apt con https, la instalación de elasticsearch desde el repositorio general del sistema; una vez instalado elasticsearch, agregamos las siguientes líneas de configuración al archivo /etc/elasticsearch/elasticsearch.yml:
 
 - network.host: 127.0.0.1
-- script.inline: true
 - cluster.name: hive
 - thread_pool.index.queue_size: 100000
 - thread_pool.search.queue_size: 100000

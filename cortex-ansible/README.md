@@ -87,6 +87,9 @@ recomendamos dejar las mismas en los valores por defecto, en caso de querer modi
 
 
 ## Post-despligue
+
+Habilitar regla de firewall para el puerto 9001.
+
 Despues del despliegue de cortex seguir la siguiente guia:
 
 [Guía de inico rápido](https://gitlab.unc.edu.ar/csirt/csirt-docs/blob/master/gestion-de-incidentes/incidentes-install-guide.md#gu%C3%ADa-de-inicio-r%C3%A1pido)
