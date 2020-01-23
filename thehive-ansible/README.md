@@ -61,6 +61,7 @@ ansible-playbook -i hosts -l thehive setup.yml --extra-var "target=thehiveuser" 
 4.  Una vez creado el usuario administrador, crear una cuenta nueva para usuarios no administradores.
 5.  Luego crear una `API-KEY` para el usuario no administrador en `Users` (Barra superior derecha en la lista deplegable "ADMIN").
 6.  Activar la opcion `Reveal` sobre la `API-KEY`, la misma sera usada para el despliegue de Cortex.
+7. Habilitar regla de firewall para el puerto 9000.
 
 
 
