@@ -19,11 +19,7 @@
            #
            responder {
             # Absolute path where you have pulled the Cortex-Analyzers repository.
-<<<<<<< HEAD
                url =  [
-=======
-               urls =  [
->>>>>>> b6da571bb2636f910532e7d11aea1f45c33aa6f9
                       "{{path_default_analyzers_and_responders }}/responders",
                       "{{path_my_own_responders }}"
                ]

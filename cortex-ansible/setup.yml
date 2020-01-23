@@ -6,10 +6,10 @@
   gather_facts: yes
 
   roles:
-   - java_install
-   - elastic_install
-   - cortex_install
-   - download_default_analyzers_responders
+   #- java_install
+   #- elastic_install
+   #- cortex_install
+   #- download_default_analyzers_responders
    - cortex_analyzers
    - cortex_responders
 

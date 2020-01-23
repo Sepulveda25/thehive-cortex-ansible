@@ -15,11 +15,7 @@
     after: 'analyzer {'
     regexp: '(^|\s)path =(\s+).*' #matchea si empieza con un espacio en blanco y path..
     replace: |
-<<<<<<< HEAD
               url =  [
-=======
-              urls =  [
->>>>>>> b6da571bb2636f910532e7d11aea1f45c33aa6f9
                   "{{path_default_analyzers_and_responders}}/analyzers",
                   "{{path_my_own_analyzers }}"
               ]
